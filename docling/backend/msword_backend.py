@@ -170,8 +170,8 @@ class MsWordDocumentBackend(DeclarativeDocumentBackend):
             # Reset mappings for a fresh conversion pass
             self.paragraph_comment_map.clear()
             self.paragraph_to_items.clear()
-            doc, _ = self._walk_linear(self.docx_obj.element.body, doc)
             self._add_header_footer(self.docx_obj, doc)
+            doc, _ = self._walk_linear(self.docx_obj.element.body, doc)
             # Add comments and link them to annotated paragraphs
             self._add_comments(self.docx_obj, doc)
 
@@ -281,10 +281,10 @@ class MsWordDocumentBackend(DeclarativeDocumentBackend):
                 textbox_elements = txbx_xpath(element)
 
                 # No modern textboxes found, check for alternate/legacy textbox formats
-                if not textbox_elements and tag_name in ["drawing", "pict"]:
+                if not textbox_elements:
                     # Additional checks for textboxes in DrawingML and VML formats
                     alt_txbx_xpath = etree.XPath(
-                        ".//wps:txbx//w:p|.//w10:wrap//w:p|.//a:p//a:t",
+                        ".//wps:txbx//w:p|.//w10:wrap//w:p|.//v:textbox//w:txbxContent//w:p",
                         namespaces=MsWordDocumentBackend._BLIP_NAMESPACES,
                     )
                     textbox_elements = alt_txbx_xpath(element)
@@ -387,19 +387,25 @@ class MsWordDocumentBackend(DeclarativeDocumentBackend):
                             self.display_drawingml_warning = False
                 else:
                     self._handle_drawingml(doc=doc, drawingml_els=drawingml_els)
+
+                if (
+                    tag_name == "p"
+                    and element.find(
+                        ".//w:t", namespaces=MsWordDocumentBackend._BLIP_NAMESPACES
+                    )
+                    is not None
+                ):
+                    te3 = self._handle_text_elements(element, doc)
+                    added_elements.extend(te3)
             # Check for the sdt containers, like table of contents
             elif tag_name == "sdt":
                 sdt_content = element.find(
                     ".//w:sdtContent", namespaces=MsWordDocumentBackend._BLIP_NAMESPACES
                 )
                 if sdt_content is not None:
-                    # Iterate paragraphs, runs, or text inside <w:sdtContent>.
-                    paragraphs = sdt_content.findall(
-                        ".//w:p", namespaces=MsWordDocumentBackend._BLIP_NAMESPACES
-                    )
-                    for p in paragraphs:
-                        te = self._handle_text_elements(p, doc)
-                        added_elements.extend(te)
+                    # Recursively walk the SDT content to catch textboxes, tables, and nested structures
+                    _, te = self._walk_linear(sdt_content, doc)
+                    added_elements.extend(te)
             # Check for Text
             elif tag_name == "p":
                 # "tcPr", "sectPr"
@@ -409,6 +415,24 @@ class MsWordDocumentBackend(DeclarativeDocumentBackend):
                 _log.debug(f"Ignoring element in DOCX with tag: {tag_name}")
 
         return doc, added_elements
+
+    def _is_valid_image(self, pil_image: Image.Image | None) -> bool:
+        """Check if an image is a meaningful graphic vs a layout spacer."""
+        if pil_image is None:
+            return True
+
+        # Filter tiny spacer images
+        if pil_image.width <= 10 or pil_image.height <= 10:
+            return False
+
+        try:
+            colors = pil_image.getcolors(maxcolors=2)
+            if colors is not None and len(colors) <= 1:
+                return False
+        except Exception:
+            pass
+
+        return True
 
     def _str_to_int(self, s: str | None, default: int | None = 0) -> int | None:
         if s is None:
@@ -690,13 +714,62 @@ class MsWordDocumentBackend(DeclarativeDocumentBackend):
         return label, None
 
     @classmethod
-    def _get_format_from_run(cls, run: Run) -> Formatting | None:
-        # The .bold and .italic properties are booleans, but .underline can be an enum
-        # like WD_UNDERLINE.THICK (value 6), so we need to convert it to a boolean
-        is_bold = run.bold or False
+    def _get_format_from_run(
+        cls, run: Run, paragraph: Paragraph | None = None
+    ) -> Formatting | None:
+        is_bold = run.bold
+
+        if not is_bold:
+            try:
+                # 1. Check the raw XML of the run itself for <w:b> tags
+                if hasattr(run, "_element") and run._element is not None:
+                    b_tags = run._element.xpath(".//w:b | .//w:bCs")
+                    for b in b_tags:
+                        val = b.get(
+                            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}val"
+                        )
+                        if val not in ["0", "false"]:
+                            is_bold = True
+                            break
+
+                # 2. Check the paragraph's direct formatting properties
+                if (
+                    not is_bold
+                    and hasattr(run, "_parent")
+                    and hasattr(run._parent, "_element")
+                ):
+                    pPr_b = run._parent._element.xpath(
+                        "./w:pPr/w:rPr/w:b | ./w:pPr/w:rPr/w:bCs"
+                    )
+                    for b in pPr_b:
+                        val = b.get(
+                            "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}val"
+                        )
+                        if val not in ["0", "false"]:
+                            is_bold = True
+                            break
+
+                # 3. Recursively climb the paragraph's Master Style Sheet
+                if (
+                    not is_bold
+                    and paragraph is not None
+                    and getattr(paragraph, "style", None)
+                ):
+                    current_style = paragraph.style
+                    # Keep climbing until we hit the base root style
+                    while current_style is not None:
+                        if hasattr(current_style, "font") and current_style.font.bold:
+                            is_bold = True
+                            break
+                        # Move up to the next parent style
+                        current_style = getattr(current_style, "base_style", None)
+            except Exception:
+                pass
+
+        is_bold = is_bold or False
+
         is_italic = run.italic or False
         is_strikethrough = run.font.strike or False
-        # Convert any non-None underline value to True
         is_underline = bool(run.underline is not None and run.underline)
         is_sub = run.font.subscript or False
         is_sup = run.font.superscript or False
@@ -728,7 +801,15 @@ class MsWordDocumentBackend(DeclarativeDocumentBackend):
 
         content: list[tuple[str, Formatting | None, AnyUrl | Path | None]] = []
 
-        for child in paragraph._p:
+        def _get_children_recursive(node):
+            for child in node:
+                tag_name = etree.QName(child).localname
+                if tag_name in {"smartTag", "customXml", "ins", "fldSimple"}:
+                    yield from _get_children_recursive(child)
+                else:
+                    yield child
+
+        for child in _get_children_recursive(paragraph._p):
             tag_name = etree.QName(child).localname
 
             if tag_name == "sdt":
@@ -746,7 +827,9 @@ class MsWordDocumentBackend(DeclarativeDocumentBackend):
                     namespaces=MsWordDocumentBackend._BLIP_NAMESPACES,
                 )
                 fmt = (
-                    self._get_format_from_run(Run(runs[0], paragraph)) if runs else None
+                    self._get_format_from_run(Run(runs[0], paragraph), paragraph)
+                    if runs
+                    else None
                 )
                 content.append((text, fmt, None))
                 continue
@@ -765,7 +848,7 @@ class MsWordDocumentBackend(DeclarativeDocumentBackend):
                     (
                         item.text,
                         (
-                            self._get_format_from_run(item.runs[0])
+                            self._get_format_from_run(item.runs[0], paragraph)
                             if item.runs and len(item.runs) > 0
                             else None
                         ),
@@ -773,7 +856,9 @@ class MsWordDocumentBackend(DeclarativeDocumentBackend):
                     )
                 )
             elif isinstance(item, Run):
-                content.append((item.text, self._get_format_from_run(item), None))
+                content.append(
+                    (item.text, self._get_format_from_run(item, paragraph), None)
+                )
 
         return content
 
@@ -2174,6 +2259,9 @@ class MsWordDocumentBackend(DeclarativeDocumentBackend):
                         _log.warning(f"Warning: image cannot be loaded by Pillow: {e}")
                         pil_image = None
 
+                if not self._is_valid_image(pil_image):
+                    continue
+
                 elem_ref.append(self._add_picture_to_doc(doc, parent, pil_image))
         return elem_ref
 
@@ -2243,6 +2331,9 @@ class MsWordDocumentBackend(DeclarativeDocumentBackend):
                                 "Install LibreOffice for better VML/EMF/WMF support."
                             )
 
+                if not self._is_valid_image(pil_image):
+                    continue
+
                 elem_ref.append(self._add_picture_to_doc(doc, parent, pil_image))
         return elem_ref
 
@@ -2263,6 +2354,9 @@ class MsWordDocumentBackend(DeclarativeDocumentBackend):
             pil_image = self._convert_elements_via_docx(drawingml_els, element_tag=None)
             if pil_image is None:
                 raise UnidentifiedImageError
+
+            if not self._is_valid_image(pil_image):
+                return
 
             self._add_picture_to_doc(doc, parent, pil_image)
         except (UnidentifiedImageError, OSError):
@@ -2285,7 +2379,13 @@ class MsWordDocumentBackend(DeclarativeDocumentBackend):
         """
         current_layer = self.content_layer
         base_parent = self.parents[0]
-        self.content_layer = ContentLayer.FURNITURE
+        self.content_layer = ContentLayer.BODY
+
+        txbx_xpath = etree.XPath(
+            ".//w:txbxContent|.//v:textbox//w:p|.//wps:txbx//w:p|.//a:p//a:t",
+            namespaces=self._BLIP_NAMESPACES,
+        )
+
         for sec_idx, section in enumerate(docx_obj.sections):
             if sec_idx > 0 and not section.different_first_page_header_footer:
                 continue
@@ -2298,7 +2398,10 @@ class MsWordDocumentBackend(DeclarativeDocumentBackend):
             par = [txt for txt in (par.text.strip() for par in hdr.paragraphs) if txt]
             tables = hdr.tables
             has_blip = self._has_blip(hdr._element)
-            if par or tables or has_blip:
+
+            has_txbx = len(txbx_xpath(hdr._element)) > 0
+
+            if par or tables or has_blip or has_txbx:
                 self.parents[0] = doc.add_group(
                     label=GroupLabel.SECTION,
                     name="page header",
@@ -2314,7 +2417,10 @@ class MsWordDocumentBackend(DeclarativeDocumentBackend):
             par = [txt for txt in (par.text.strip() for par in ftr.paragraphs) if txt]
             tables = ftr.tables
             has_blip = self._has_blip(ftr._element)
-            if par or tables or has_blip:
+
+            has_txbx = len(txbx_xpath(ftr._element)) > 0
+
+            if par or tables or has_blip or has_txbx:
                 self.parents[0] = doc.add_group(
                     label=GroupLabel.SECTION,
                     name="page footer",

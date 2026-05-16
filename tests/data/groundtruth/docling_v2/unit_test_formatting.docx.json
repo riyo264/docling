@@ -18,52 +18,52 @@
     "self_ref": "#/body",
     "children": [
       {
-        "$ref": "#/texts/0"
-      },
-      {
-        "$ref": "#/texts/1"
-      },
-      {
-        "$ref": "#/texts/2"
-      },
-      {
-        "$ref": "#/texts/3"
-      },
-      {
-        "$ref": "#/texts/4"
-      },
-      {
         "$ref": "#/groups/0"
-      },
-      {
-        "$ref": "#/texts/12"
       },
       {
         "$ref": "#/groups/1"
       },
       {
-        "$ref": "#/texts/25"
+        "$ref": "#/groups/2"
       },
       {
-        "$ref": "#/texts/26"
+        "$ref": "#/groups/4"
       },
       {
-        "$ref": "#/texts/27"
+        "$ref": "#/texts/9"
       },
       {
-        "$ref": "#/texts/28"
+        "$ref": "#/texts/10"
+      },
+      {
+        "$ref": "#/texts/11"
+      },
+      {
+        "$ref": "#/texts/12"
+      },
+      {
+        "$ref": "#/texts/13"
       },
       {
         "$ref": "#/groups/5"
       },
       {
+        "$ref": "#/texts/21"
+      },
+      {
         "$ref": "#/groups/6"
       },
       {
-        "$ref": "#/groups/7"
+        "$ref": "#/texts/34"
       },
       {
-        "$ref": "#/groups/9"
+        "$ref": "#/texts/35"
+      },
+      {
+        "$ref": "#/texts/36"
+      },
+      {
+        "$ref": "#/texts/37"
       }
     ],
     "content_layer": "body",
@@ -78,30 +78,12 @@
       },
       "children": [
         {
-          "$ref": "#/texts/5"
-        },
-        {
-          "$ref": "#/texts/6"
-        },
-        {
-          "$ref": "#/texts/7"
-        },
-        {
-          "$ref": "#/texts/8"
-        },
-        {
-          "$ref": "#/texts/9"
-        },
-        {
-          "$ref": "#/texts/10"
-        },
-        {
-          "$ref": "#/texts/11"
+          "$ref": "#/texts/0"
         }
       ],
       "content_layer": "body",
-      "name": "group",
-      "label": "inline"
+      "name": "page header",
+      "label": "section"
     },
     {
       "self_ref": "#/groups/1",
@@ -110,8 +92,79 @@
       },
       "children": [
         {
-          "$ref": "#/texts/13"
+          "$ref": "#/texts/1"
+        }
+      ],
+      "content_layer": "body",
+      "name": "page footer",
+      "label": "section"
+    },
+    {
+      "self_ref": "#/groups/2",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [
+        {
+          "$ref": "#/groups/3"
         },
+        {
+          "$ref": "#/texts/5"
+        }
+      ],
+      "content_layer": "body",
+      "name": "page header",
+      "label": "section"
+    },
+    {
+      "self_ref": "#/groups/3",
+      "parent": {
+        "$ref": "#/groups/2"
+      },
+      "children": [
+        {
+          "$ref": "#/texts/2"
+        },
+        {
+          "$ref": "#/texts/3"
+        },
+        {
+          "$ref": "#/texts/4"
+        }
+      ],
+      "content_layer": "body",
+      "name": "group",
+      "label": "inline"
+    },
+    {
+      "self_ref": "#/groups/4",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [
+        {
+          "$ref": "#/texts/6"
+        },
+        {
+          "$ref": "#/texts/7"
+        },
+        {
+          "$ref": "#/pictures/0"
+        },
+        {
+          "$ref": "#/texts/8"
+        }
+      ],
+      "content_layer": "body",
+      "name": "page footer",
+      "label": "section"
+    },
+    {
+      "self_ref": "#/groups/5",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [
         {
           "$ref": "#/texts/14"
         },
@@ -121,20 +174,6 @@
         {
           "$ref": "#/texts/16"
         },
-        {
-          "$ref": "#/groups/3"
-        }
-      ],
-      "content_layer": "body",
-      "name": "list",
-      "label": "list"
-    },
-    {
-      "self_ref": "#/groups/2",
-      "parent": {
-        "$ref": "#/texts/16"
-      },
-      "children": [
         {
           "$ref": "#/texts/17"
         },
@@ -153,23 +192,9 @@
       "label": "inline"
     },
     {
-      "self_ref": "#/groups/3",
+      "self_ref": "#/groups/6",
       "parent": {
-        "$ref": "#/groups/1"
-      },
-      "children": [
-        {
-          "$ref": "#/texts/21"
-        }
-      ],
-      "content_layer": "body",
-      "name": "list",
-      "label": "list"
-    },
-    {
-      "self_ref": "#/groups/4",
-      "parent": {
-        "$ref": "#/texts/21"
+        "$ref": "#/body"
       },
       "children": [
         {
@@ -180,6 +205,35 @@
         },
         {
           "$ref": "#/texts/24"
+        },
+        {
+          "$ref": "#/texts/25"
+        },
+        {
+          "$ref": "#/groups/8"
+        }
+      ],
+      "content_layer": "body",
+      "name": "list",
+      "label": "list"
+    },
+    {
+      "self_ref": "#/groups/7",
+      "parent": {
+        "$ref": "#/texts/25"
+      },
+      "children": [
+        {
+          "$ref": "#/texts/26"
+        },
+        {
+          "$ref": "#/texts/27"
+        },
+        {
+          "$ref": "#/texts/28"
+        },
+        {
+          "$ref": "#/texts/29"
         }
       ],
       "content_layer": "body",
@@ -187,54 +241,23 @@
       "label": "inline"
     },
     {
-      "self_ref": "#/groups/5",
+      "self_ref": "#/groups/8",
       "parent": {
-        "$ref": "#/body"
-      },
-      "children": [
-        {
-          "$ref": "#/texts/29"
-        }
-      ],
-      "content_layer": "furniture",
-      "name": "page header",
-      "label": "section"
-    },
-    {
-      "self_ref": "#/groups/6",
-      "parent": {
-        "$ref": "#/body"
+        "$ref": "#/groups/6"
       },
       "children": [
         {
           "$ref": "#/texts/30"
         }
       ],
-      "content_layer": "furniture",
-      "name": "page footer",
-      "label": "section"
+      "content_layer": "body",
+      "name": "list",
+      "label": "list"
     },
     {
-      "self_ref": "#/groups/7",
+      "self_ref": "#/groups/9",
       "parent": {
-        "$ref": "#/body"
-      },
-      "children": [
-        {
-          "$ref": "#/groups/8"
-        },
-        {
-          "$ref": "#/texts/34"
-        }
-      ],
-      "content_layer": "furniture",
-      "name": "page header",
-      "label": "section"
-    },
-    {
-      "self_ref": "#/groups/8",
-      "parent": {
-        "$ref": "#/groups/7"
+        "$ref": "#/texts/30"
       },
       "children": [
         {
@@ -247,37 +270,185 @@
           "$ref": "#/texts/33"
         }
       ],
-      "content_layer": "furniture",
+      "content_layer": "body",
       "name": "group",
       "label": "inline"
-    },
-    {
-      "self_ref": "#/groups/9",
-      "parent": {
-        "$ref": "#/body"
-      },
-      "children": [
-        {
-          "$ref": "#/texts/35"
-        },
-        {
-          "$ref": "#/texts/36"
-        },
-        {
-          "$ref": "#/pictures/0"
-        },
-        {
-          "$ref": "#/texts/37"
-        }
-      ],
-      "content_layer": "furniture",
-      "name": "page footer",
-      "label": "section"
     }
   ],
   "texts": [
     {
       "self_ref": "#/texts/0",
+      "parent": {
+        "$ref": "#/groups/0"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [],
+      "orig": "This is a header",
+      "text": "This is a header",
+      "formatting": {
+        "bold": false,
+        "italic": false,
+        "underline": false,
+        "strikethrough": false,
+        "script": "baseline"
+      }
+    },
+    {
+      "self_ref": "#/texts/1",
+      "parent": {
+        "$ref": "#/groups/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [],
+      "orig": "This is a footer",
+      "text": "This is a footer",
+      "formatting": {
+        "bold": false,
+        "italic": false,
+        "underline": false,
+        "strikethrough": false,
+        "script": "baseline"
+      }
+    },
+    {
+      "self_ref": "#/texts/2",
+      "parent": {
+        "$ref": "#/groups/3"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [],
+      "orig": "Another",
+      "text": "Another",
+      "formatting": {
+        "bold": false,
+        "italic": false,
+        "underline": false,
+        "strikethrough": false,
+        "script": "baseline"
+      }
+    },
+    {
+      "self_ref": "#/texts/3",
+      "parent": {
+        "$ref": "#/groups/3"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [],
+      "orig": "header",
+      "text": "header",
+      "formatting": {
+        "bold": true,
+        "italic": false,
+        "underline": false,
+        "strikethrough": false,
+        "script": "baseline"
+      }
+    },
+    {
+      "self_ref": "#/texts/4",
+      "parent": {
+        "$ref": "#/groups/3"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [],
+      "orig": "in bold",
+      "text": "in bold",
+      "formatting": {
+        "bold": false,
+        "italic": false,
+        "underline": false,
+        "strikethrough": false,
+        "script": "baseline"
+      }
+    },
+    {
+      "self_ref": "#/texts/5",
+      "parent": {
+        "$ref": "#/groups/2"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [],
+      "orig": "With 2 paragraphs",
+      "text": "With 2 paragraphs",
+      "formatting": {
+        "bold": false,
+        "italic": false,
+        "underline": false,
+        "strikethrough": false,
+        "script": "baseline"
+      }
+    },
+    {
+      "self_ref": "#/texts/6",
+      "parent": {
+        "$ref": "#/groups/4"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [],
+      "orig": "Another footer",
+      "text": "Another footer",
+      "formatting": {
+        "bold": false,
+        "italic": false,
+        "underline": false,
+        "strikethrough": false,
+        "script": "baseline"
+      }
+    },
+    {
+      "self_ref": "#/texts/7",
+      "parent": {
+        "$ref": "#/groups/4"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [],
+      "orig": "With",
+      "text": "With",
+      "formatting": {
+        "bold": false,
+        "italic": false,
+        "underline": false,
+        "strikethrough": false,
+        "script": "baseline"
+      }
+    },
+    {
+      "self_ref": "#/texts/8",
+      "parent": {
+        "$ref": "#/groups/4"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [],
+      "orig": "3 paragraphs and a picture",
+      "text": "3 paragraphs and a picture",
+      "formatting": {
+        "bold": false,
+        "italic": false,
+        "underline": false,
+        "strikethrough": false,
+        "script": "baseline"
+      }
+    },
+    {
+      "self_ref": "#/texts/9",
       "parent": {
         "$ref": "#/body"
       },
@@ -296,7 +467,7 @@
       }
     },
     {
-      "self_ref": "#/texts/1",
+      "self_ref": "#/texts/10",
       "parent": {
         "$ref": "#/body"
       },
@@ -315,7 +486,7 @@
       }
     },
     {
-      "self_ref": "#/texts/2",
+      "self_ref": "#/texts/11",
       "parent": {
         "$ref": "#/body"
       },
@@ -334,7 +505,7 @@
       }
     },
     {
-      "self_ref": "#/texts/3",
+      "self_ref": "#/texts/12",
       "parent": {
         "$ref": "#/body"
       },
@@ -354,7 +525,7 @@
       "hyperlink": "https://github.com/DS4SD/docling"
     },
     {
-      "self_ref": "#/texts/4",
+      "self_ref": "#/texts/13",
       "parent": {
         "$ref": "#/body"
       },
@@ -374,9 +545,9 @@
       "hyperlink": "https://github.com/DS4SD/docling"
     },
     {
-      "self_ref": "#/texts/5",
+      "self_ref": "#/texts/14",
       "parent": {
-        "$ref": "#/groups/0"
+        "$ref": "#/groups/5"
       },
       "children": [],
       "content_layer": "body",
@@ -393,9 +564,9 @@
       }
     },
     {
-      "self_ref": "#/texts/6",
+      "self_ref": "#/texts/15",
       "parent": {
-        "$ref": "#/groups/0"
+        "$ref": "#/groups/5"
       },
       "children": [],
       "content_layer": "body",
@@ -412,9 +583,9 @@
       }
     },
     {
-      "self_ref": "#/texts/7",
+      "self_ref": "#/texts/16",
       "parent": {
-        "$ref": "#/groups/0"
+        "$ref": "#/groups/5"
       },
       "children": [],
       "content_layer": "body",
@@ -431,9 +602,9 @@
       }
     },
     {
-      "self_ref": "#/texts/8",
+      "self_ref": "#/texts/17",
       "parent": {
-        "$ref": "#/groups/0"
+        "$ref": "#/groups/5"
       },
       "children": [],
       "content_layer": "body",
@@ -450,9 +621,9 @@
       }
     },
     {
-      "self_ref": "#/texts/9",
+      "self_ref": "#/texts/18",
       "parent": {
-        "$ref": "#/groups/0"
+        "$ref": "#/groups/5"
       },
       "children": [],
       "content_layer": "body",
@@ -469,9 +640,9 @@
       }
     },
     {
-      "self_ref": "#/texts/10",
+      "self_ref": "#/texts/19",
       "parent": {
-        "$ref": "#/groups/0"
+        "$ref": "#/groups/5"
       },
       "children": [],
       "content_layer": "body",
@@ -489,9 +660,9 @@
       "hyperlink": "https://github.com/DS4SD/docling"
     },
     {
-      "self_ref": "#/texts/11",
+      "self_ref": "#/texts/20",
       "parent": {
-        "$ref": "#/groups/0"
+        "$ref": "#/groups/5"
       },
       "children": [],
       "content_layer": "body",
@@ -508,7 +679,7 @@
       }
     },
     {
-      "self_ref": "#/texts/12",
+      "self_ref": "#/texts/21",
       "parent": {
         "$ref": "#/body"
       },
@@ -520,9 +691,9 @@
       "text": ""
     },
     {
-      "self_ref": "#/texts/13",
+      "self_ref": "#/texts/22",
       "parent": {
-        "$ref": "#/groups/1"
+        "$ref": "#/groups/6"
       },
       "children": [],
       "content_layer": "body",
@@ -541,9 +712,9 @@
       "marker": ""
     },
     {
-      "self_ref": "#/texts/14",
+      "self_ref": "#/texts/23",
       "parent": {
-        "$ref": "#/groups/1"
+        "$ref": "#/groups/6"
       },
       "children": [],
       "content_layer": "body",
@@ -562,9 +733,9 @@
       "marker": ""
     },
     {
-      "self_ref": "#/texts/15",
+      "self_ref": "#/texts/24",
       "parent": {
-        "$ref": "#/groups/1"
+        "$ref": "#/groups/6"
       },
       "children": [],
       "content_layer": "body",
@@ -583,13 +754,13 @@
       "marker": ""
     },
     {
-      "self_ref": "#/texts/16",
+      "self_ref": "#/texts/25",
       "parent": {
-        "$ref": "#/groups/1"
+        "$ref": "#/groups/6"
       },
       "children": [
         {
-          "$ref": "#/groups/2"
+          "$ref": "#/groups/7"
         }
       ],
       "content_layer": "body",
@@ -601,9 +772,9 @@
       "marker": ""
     },
     {
-      "self_ref": "#/texts/17",
+      "self_ref": "#/texts/26",
       "parent": {
-        "$ref": "#/groups/2"
+        "$ref": "#/groups/7"
       },
       "children": [],
       "content_layer": "body",
@@ -620,9 +791,9 @@
       }
     },
     {
-      "self_ref": "#/texts/18",
+      "self_ref": "#/texts/27",
       "parent": {
-        "$ref": "#/groups/2"
+        "$ref": "#/groups/7"
       },
       "children": [],
       "content_layer": "body",
@@ -639,9 +810,9 @@
       }
     },
     {
-      "self_ref": "#/texts/19",
+      "self_ref": "#/texts/28",
       "parent": {
-        "$ref": "#/groups/2"
+        "$ref": "#/groups/7"
       },
       "children": [],
       "content_layer": "body",
@@ -658,9 +829,9 @@
       }
     },
     {
-      "self_ref": "#/texts/20",
+      "self_ref": "#/texts/29",
       "parent": {
-        "$ref": "#/groups/2"
+        "$ref": "#/groups/7"
       },
       "children": [],
       "content_layer": "body",
@@ -677,13 +848,13 @@
       }
     },
     {
-      "self_ref": "#/texts/21",
+      "self_ref": "#/texts/30",
       "parent": {
-        "$ref": "#/groups/3"
+        "$ref": "#/groups/8"
       },
       "children": [
         {
-          "$ref": "#/groups/4"
+          "$ref": "#/groups/9"
         }
       ],
       "content_layer": "body",
@@ -695,9 +866,9 @@
       "marker": ""
     },
     {
-      "self_ref": "#/texts/22",
+      "self_ref": "#/texts/31",
       "parent": {
-        "$ref": "#/groups/4"
+        "$ref": "#/groups/9"
       },
       "children": [],
       "content_layer": "body",
@@ -714,9 +885,9 @@
       }
     },
     {
-      "self_ref": "#/texts/23",
+      "self_ref": "#/texts/32",
       "parent": {
-        "$ref": "#/groups/4"
+        "$ref": "#/groups/9"
       },
       "children": [],
       "content_layer": "body",
@@ -733,9 +904,9 @@
       }
     },
     {
-      "self_ref": "#/texts/24",
+      "self_ref": "#/texts/33",
       "parent": {
-        "$ref": "#/groups/4"
+        "$ref": "#/groups/9"
       },
       "children": [],
       "content_layer": "body",
@@ -752,7 +923,7 @@
       }
     },
     {
-      "self_ref": "#/texts/25",
+      "self_ref": "#/texts/34",
       "parent": {
         "$ref": "#/body"
       },
@@ -764,7 +935,7 @@
       "text": ""
     },
     {
-      "self_ref": "#/texts/26",
+      "self_ref": "#/texts/35",
       "parent": {
         "$ref": "#/body"
       },
@@ -783,7 +954,7 @@
       }
     },
     {
-      "self_ref": "#/texts/27",
+      "self_ref": "#/texts/36",
       "parent": {
         "$ref": "#/body"
       },
@@ -795,7 +966,7 @@
       "text": ""
     },
     {
-      "self_ref": "#/texts/28",
+      "self_ref": "#/texts/37",
       "parent": {
         "$ref": "#/body"
       },
@@ -812,187 +983,16 @@
         "strikethrough": false,
         "script": "baseline"
       }
-    },
-    {
-      "self_ref": "#/texts/29",
-      "parent": {
-        "$ref": "#/groups/5"
-      },
-      "children": [],
-      "content_layer": "furniture",
-      "label": "text",
-      "prov": [],
-      "orig": "This is a header",
-      "text": "This is a header",
-      "formatting": {
-        "bold": false,
-        "italic": false,
-        "underline": false,
-        "strikethrough": false,
-        "script": "baseline"
-      }
-    },
-    {
-      "self_ref": "#/texts/30",
-      "parent": {
-        "$ref": "#/groups/6"
-      },
-      "children": [],
-      "content_layer": "furniture",
-      "label": "text",
-      "prov": [],
-      "orig": "This is a footer",
-      "text": "This is a footer",
-      "formatting": {
-        "bold": false,
-        "italic": false,
-        "underline": false,
-        "strikethrough": false,
-        "script": "baseline"
-      }
-    },
-    {
-      "self_ref": "#/texts/31",
-      "parent": {
-        "$ref": "#/groups/8"
-      },
-      "children": [],
-      "content_layer": "furniture",
-      "label": "text",
-      "prov": [],
-      "orig": "Another",
-      "text": "Another",
-      "formatting": {
-        "bold": false,
-        "italic": false,
-        "underline": false,
-        "strikethrough": false,
-        "script": "baseline"
-      }
-    },
-    {
-      "self_ref": "#/texts/32",
-      "parent": {
-        "$ref": "#/groups/8"
-      },
-      "children": [],
-      "content_layer": "furniture",
-      "label": "text",
-      "prov": [],
-      "orig": "header",
-      "text": "header",
-      "formatting": {
-        "bold": true,
-        "italic": false,
-        "underline": false,
-        "strikethrough": false,
-        "script": "baseline"
-      }
-    },
-    {
-      "self_ref": "#/texts/33",
-      "parent": {
-        "$ref": "#/groups/8"
-      },
-      "children": [],
-      "content_layer": "furniture",
-      "label": "text",
-      "prov": [],
-      "orig": "in bold",
-      "text": "in bold",
-      "formatting": {
-        "bold": false,
-        "italic": false,
-        "underline": false,
-        "strikethrough": false,
-        "script": "baseline"
-      }
-    },
-    {
-      "self_ref": "#/texts/34",
-      "parent": {
-        "$ref": "#/groups/7"
-      },
-      "children": [],
-      "content_layer": "furniture",
-      "label": "text",
-      "prov": [],
-      "orig": "With 2 paragraphs",
-      "text": "With 2 paragraphs",
-      "formatting": {
-        "bold": false,
-        "italic": false,
-        "underline": false,
-        "strikethrough": false,
-        "script": "baseline"
-      }
-    },
-    {
-      "self_ref": "#/texts/35",
-      "parent": {
-        "$ref": "#/groups/9"
-      },
-      "children": [],
-      "content_layer": "furniture",
-      "label": "text",
-      "prov": [],
-      "orig": "Another footer",
-      "text": "Another footer",
-      "formatting": {
-        "bold": false,
-        "italic": false,
-        "underline": false,
-        "strikethrough": false,
-        "script": "baseline"
-      }
-    },
-    {
-      "self_ref": "#/texts/36",
-      "parent": {
-        "$ref": "#/groups/9"
-      },
-      "children": [],
-      "content_layer": "furniture",
-      "label": "text",
-      "prov": [],
-      "orig": "With",
-      "text": "With",
-      "formatting": {
-        "bold": false,
-        "italic": false,
-        "underline": false,
-        "strikethrough": false,
-        "script": "baseline"
-      }
-    },
-    {
-      "self_ref": "#/texts/37",
-      "parent": {
-        "$ref": "#/groups/9"
-      },
-      "children": [],
-      "content_layer": "furniture",
-      "label": "text",
-      "prov": [],
-      "orig": "3 paragraphs and a picture",
-      "text": "3 paragraphs and a picture",
-      "formatting": {
-        "bold": false,
-        "italic": false,
-        "underline": false,
-        "strikethrough": false,
-        "script": "baseline"
-      }
     }
   ],
   "pictures": [
     {
       "self_ref": "#/pictures/0",
       "parent": {
-        "$ref": "#/groups/9"
+        "$ref": "#/groups/4"
       },
       "children": [],
-      "content_layer": "furniture",
+      "content_layer": "body",
       "label": "picture",
       "prov": [],
       "captions": [],
