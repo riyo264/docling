@@ -1,19 +1,3 @@
-This is a header
-
-This is a footer
-
-Another **header** in bold
-
-With 2 paragraphs
-
-Another footer
-
-With
-
-<!-- image -->
-
-3 paragraphs and a picture
-
 *italic*
 
 **bold**

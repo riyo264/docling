@@ -40,10 +40,16 @@
           "$ref": "#/texts/2"
         },
         {
+          "$ref": "#/pictures/0"
+        },
+        {
           "$ref": "#/texts/3"
         },
         {
           "$ref": "#/texts/4"
+        },
+        {
+          "$ref": "#/pictures/1"
         },
         {
           "$ref": "#/texts/5"
@@ -151,7 +157,54 @@
       }
     }
   ],
-  "pictures": [],
+  "pictures": [
+    {
+      "self_ref": "#/pictures/0",
+      "parent": {
+        "$ref": "#/texts/0"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "picture",
+      "prov": [],
+      "captions": [],
+      "references": [],
+      "footnotes": [],
+      "image": {
+        "mimetype": "image/png",
+        "dpi": 72,
+        "size": {
+          "width": 200.0,
+          "height": 200.0
+        },
+        "uri": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAIAAAAiOjnJAAACEklEQVR4nO3UsQ0AIBADsYf9d4YluALJHiDVKesMvLeDTRAWDY9FQlgkhEVCWCSERUJYJIRFQlgkhEVCWCSERUJYJIRFQlgkhEVCWCSERUJYJIRFQlgkhEVCWCSERUJYJIRFQlgkhEVCWCSERUJYJIRFQlgkhEVCWCSERUJYJIRFQlgkhEVCWCSERUJYJIRFQlgkhEVCWCSERUJYJIRFQlgkhEVCWCSERUJYJIRFQlgkhEVCWCSERUJYJIRFQlgkhEVCWCSERUJYJIRFQlgkhEVCWCSERUJYJIRFQlgkhEVCWCSERUJYJIRFQlgkhEVCWCSERUJYJIRFQlgkhEVCWCSERUJYJIRFQlgkhEVCWCSERUJYJIRFQlgkhEVCWCSERUJYJIRFQlgkhEVCWAiLf3gsEsIiISwSwiIhLBLCIiEsEsIiISwSwiIhLBLCIiEsEsIiISwSwiIhLBLCIiEsEsIiISwSwiIhLBLCIiEsEsIiISwSwiIhLBLCIiEsEsIiISwSwiIhLBLCIiEsEsIiISwSwiIhLBLCIiEsEsIiISwSwiIhLBLCIiEsEsIiISwSwiIhLBLCIiEsEsIiISwSwiIhLBLCIiEsEsIiISwSwiIhLBLCIiEsEsIiISwSwiIhLBLCIiEsEsIiISwSwiIhLBLCIiEsEsIiISwSwiIhLBLCIiEsEsIiISwSwiIhLBLCYgoXij0Cj3aTAC8AAAAASUVORK5CYII="
+      },
+      "annotations": []
+    },
+    {
+      "self_ref": "#/pictures/1",
+      "parent": {
+        "$ref": "#/texts/0"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "picture",
+      "prov": [],
+      "captions": [],
+      "references": [],
+      "footnotes": [],
+      "image": {
+        "mimetype": "image/png",
+        "dpi": 72,
+        "size": {
+          "width": 150.0,
+          "height": 150.0
+        },
+        "uri": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJYAAACWCAIAAACzY+a1AAABcUlEQVR4nO3RwQkAIBDAsNP9d9YhfEghmaDQNXOGsv07gFcW5lmYZ2GehXkW5lmYZ2GehXkW5lmYZ2GehXkW5lmYZ2GehXkW5lmYZ2GehXkW5lmYZ2GehXkW5lmYZ2GehXkW5lmYZ2GehXkW5lmYZ2GehXkW5lmYZ2GehXkW5lmYZ2GehXkW5lmYZ2GehXkW5lmYZ2GehXkW5lmYZ2GehXkW5lmYZ2GehXkW5lmYZ2GehXkW5lmYZ2GehXkW5lmYZ2GehXkW5lmYZ2GehXkW5lmYZ2GehXkW5lmYZ2GehXkW5lmYZ2GehXkW5lmYZ2GehXkW5lmYZ2GehXkW5lmYZ2GehXkW5lmYZ2GehXkW5lmYZ2GehXkW5lmYZ2GehXkW5lmYZ2GehXkW5lmYZ2GehXkW5lmYZ2GehXkW5lmYZ2GehXkW5lmYZ2GehXkW5lmYZ2GehXkW5lmYZ2GehXkW5lmYZ2GehXkW5lmYZ2GehVN3AS48AivB6nXZAAAAAElFTkSuQmCC"
+      },
+      "annotations": []
+    }
+  ],
   "tables": [],
   "key_value_items": [],
   "form_items": [],
