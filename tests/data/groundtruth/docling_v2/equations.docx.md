@@ -58,10 +58,10 @@ $$\oiiint_{C}^{}\frac{1}{z}dz$$
 
 Operators used with limits:
 
-$$\operatorname_{argmax}_{ \epsilon }f(x),   \lim_{n}{\left(1+\frac{1}{n}\right)}^{n} ,  \max_{0 \leq x \leq 1}xe^{-x^{2}},  unsupported_{n}{\left(1+\frac{1}{n}\right)}^{n}$$
+$$\operatorname_{argmax}_{ \epsilon}f(x),   \lim_{n}{\left(1+\frac{1}{n}\right)}^{n} ,  \max_{0 \leq x \leq 1}xe^{-x^{2}},  unsupported_{n}{\left(1+\frac{1}{n}\right)}^{n}$$
 
 Equations with the OMML group character object:
 
-$$P_{ x}=\underbrace{S \cdot T \cdot G \cdot (x+y+z)}_{group\ with\ underbraces}+e^{x}$$
+$$P_{ x}=\underbrace_{S \cdot T \cdot G \cdot (x+y+z)}_{group\ with\ underbraces}+e^{x}$$
 
-$$Q_{ y}=\overset{group\ with\ overbraces}{\overbrace{G \cdot T \cdot S \cdot (x+y+z)}}+e^{y}$$
+$$Q_{ y}=\overset_{group\ with\ overbraces}{\overbrace_{G \cdot T \cdot S \cdot (x+y+z)}}+e^{y}$$

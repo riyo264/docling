@@ -1337,8 +1337,8 @@
       "content_layer": "body",
       "label": "formula",
       "prov": [],
-      "orig": "P_{ x}=\\underbrace{S \\cdot T \\cdot G \\cdot (x+y+z)}_{group\\ with\\ underbraces}+e^{x}",
-      "text": "P_{ x}=\\underbrace{S \\cdot T \\cdot G \\cdot (x+y+z)}_{group\\ with\\ underbraces}+e^{x}"
+      "orig": "P_{ x}=\\underbrace_{S \\cdot T \\cdot G \\cdot (x+y+z)}_{group\\ with\\ underbraces}+e^{x}",
+      "text": "P_{ x}=\\underbrace_{S \\cdot T \\cdot G \\cdot (x+y+z)}_{group\\ with\\ underbraces}+e^{x}"
     },
     {
       "self_ref": "#/texts/75",
@@ -1349,8 +1349,8 @@
       "content_layer": "body",
       "label": "formula",
       "prov": [],
-      "orig": "Q_{ y}=\\overset{group\\ with\\ overbraces}{\\overbrace{G \\cdot T \\cdot S \\cdot (x+y+z)}}+e^{y}",
-      "text": "Q_{ y}=\\overset{group\\ with\\ overbraces}{\\overbrace{G \\cdot T \\cdot S \\cdot (x+y+z)}}+e^{y}"
+      "orig": "Q_{ y}=\\overset_{group\\ with\\ overbraces}{\\overbrace_{G \\cdot T \\cdot S \\cdot (x+y+z)}}+e^{y}",
+      "text": "Q_{ y}=\\overset_{group\\ with\\ overbraces}{\\overbrace_{G \\cdot T \\cdot S \\cdot (x+y+z)}}+e^{y}"
     },
     {
       "self_ref": "#/texts/76",
